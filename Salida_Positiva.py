@@ -1,25 +1,31 @@
+import time
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-import time
 
-PATH = "C:\Archivos de Programa (x86)\chromedriver.exe"
-driver = webdriver.Chrome(PATH)
+def TestPositivo():
+    PATH= "C:\Archivos de Programa (x86)\chromedriver.exe"
+    driver=webdriver.Chrome(PATH)
 
-driver.get('https://magento.softwaretestingboard.com/')
+    driver.get('https://magento.softwaretestingboard.com/')
 
-time.sleep(5) 
-sign = driver.find_element(By.XPATH, '/html/body/div[2]/header/div[1]/div/ul/li[2]/a')
-sign.click()
+    time.sleep(5)
+    sign=driver.find_element(By.LINK_TEXT,'Sign In')
+    sign.click()
 
-'''MAIL'''
-mail = driver.find_element(By.ID, 'SIGN')
-mail.send_keys('matmarano@uade.edu.ar') 
-'''CONTRASEÑA'''   
-password = driver.find_element(By.ID, 'PASSWORD')
-password.send_keys('Daleboca2')
- 
-clickSign = driver.find_element(By.ID, 'SEND')
-clickSign.send_keys(Keys.ENTER)
-driver.close()
+    time.sleep(3)
+    mail=driver.find_element(By.ID,'email')
+    mail.send_keys('matmarano@uade.edu.ar')
 
+    time.sleep(1)
+    password=driver.find_element(By.ID,'pass')
+    password.send_keys('Daleboca2')
+    password.send_keys(Keys.ENTER)
+    time.sleep(5)
+
+def __main__():
+    TestPositivo()
+
+if __name__ == '__main__':
+    __main__()
